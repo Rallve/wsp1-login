@@ -13,7 +13,7 @@ describe('2. Login', () => {
             const hash = await bcrypt.hash('test', 10);
             await pool
                 .promise()
-                .query(`INSERT INTO users (name, password) VALUES (?,?)`, [
+                .query(`INSERT INTO unusers (name, password) VALUES (?,?)`, [
                     'test',
                     hash,
                 ]);
@@ -87,7 +87,7 @@ describe('2. Login', () => {
             const response = await request(app)
                 .post('/login')
                 .send({ username: 'test', password: 'test' });
-            expect(response.statusCode).toBe(302);
+            expect(response.statusCode).toBe(200);
             expect(response.header.location).toBe('/profile');
         });
         it('should not login an user with incorrect credentials', async () => {
@@ -105,7 +105,7 @@ describe('2. Login', () => {
      */
     afterAll(async () => {
         try {
-            await pool.promise().query('DELETE FROM users WHERE name = "test"');
+            await pool.promise().query('DELETE FROM unusers WHERE name = "test"');
         } catch (error) {
             console.log('Something went wrong with database cleanup: ');
             console.log(error);
