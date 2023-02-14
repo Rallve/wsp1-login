@@ -9,6 +9,13 @@ const indexRouter = require('./routes/index');
 
 const app = express();
 
+var session = require('express-session');
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+}))
+
 nunjucks.configure('views', {
     autoescape: true,
     express: app
