@@ -14,7 +14,10 @@ app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true,
-}))
+  LoggedIn: false,
+}));
+
+console.log(session.Session);
 
 nunjucks.configure('views', {
     autoescape: true,

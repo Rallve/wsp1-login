@@ -19,3 +19,8 @@ npm i:
 * mysql2
 * bcrypt
 * nunjucks
+
+
+## Logg
+
+17/2: part3 done, part 4 WIP ~11/13 done
