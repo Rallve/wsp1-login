@@ -24,3 +24,5 @@ npm i:
 ## Logg
 
 17/2: part3 done, part 4 WIP ~11/13 done
+
+24/2: All tests done, plus delete account function and sass, 

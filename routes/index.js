@@ -4,6 +4,7 @@ const router = express.Router();
 const pool = require('../utils/database.js');
 const promisePool = pool.promise();
 const bcrypt = require('bcrypt');
+const { post } = require('../app.js');
 //const session = require('express-session');
 
 
@@ -39,6 +40,7 @@ router.get('/profile', async function (req, res, next) {
 router.post('/login', async function (req, res, next) {
     const { username, password } = req.body;
     const errors = [];
+    console.log('test');
 
     if (username === "") {
         console.log("Username is Required")
@@ -65,18 +67,25 @@ router.post('/login', async function (req, res, next) {
                 return res.json(errors)
             }
         });
-
-         
-
+    } else {
+        errors.push("Wrong credentials")
+        return res.json(errors)
     }
-
-
-
-
     // if username inte är i db : login fail!
 });
 
+router.post('/delete', async function(req, res, next) {
+    if(req.session.LoggedIn) {
+        req.session.LoggedIn = false;
+        await promisePool.query('DELETE FROM unusers WHERE name=?', req.session.userId);
+        res.redirect('/');
+    } else {
+        return res.status(401).send("Access denied");
+    }
+});
+
 router.post('/logout', async function(req, res, next) {
+    console.log(req.session.LoggedIn);
     if(req.session.LoggedIn) {
     req.session.LoggedIn = false;
     res.redirect('/');
@@ -115,15 +124,15 @@ router.post('/register', async function(req, res) {
         return res.json(errors)
     }
 
-    await bcrypt.hash(password, 10, function (err, hash) {
+    await bcrypt.hash(password, 10, async function (err, hash) {
 
         console.log(hash);
         const [rows] = await promisePool.query('INSERT INTO unusers (name, password) VALUES (?, ?)', [username, hash])
-        // doesnt work
+        res.redirect('/login');
+
     });
 
-    //return res.redirect('/login')
-
+    
     
 });
 

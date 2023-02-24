@@ -4,7 +4,8 @@
     "private": true,
     "scripts": {
         "start": "node ./bin/www",
-        "dev": "nodemon -e js,html,njk ./bin/www",
+        "dev": "nodemon -e js,html,njk ./bin/www & npm run scss",
+        "scss": "sass --watch scss:public/css",
         "test": "jest",
         "test:watch": "jest --watch",
         "test:1": "jest --watch 1-server",

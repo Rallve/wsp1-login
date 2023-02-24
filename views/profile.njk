@@ -2,7 +2,14 @@
 {% block  content %}
 <main class="container mt-3">
     <h1>{{ title }}</h1>
-    <p>Username: {{ user }}</p>
-    <button type="submit">Logout</button>
+    <div>
+        <p>Username: {{ user }}</p>
+    </div>
+    <form action="/logout" method="POST">
+        <button type="submit" id="logout">Logout</button>
+    </form>
+    <form action="/delete" method="POST">
+        <button type="submit">Delete Account</button>
+    </form>
 </main>
 {% endblock %}
