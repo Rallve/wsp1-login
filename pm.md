@@ -8,10 +8,6 @@ Syftet med arbetet var att jobba med routes och databaser för att skapa en logi
 
 ## Bakgrund
 
-Redovisa arbetets olika delar. Så att läsaren förstår vad du gjort och hur.
-
-Beskriv hur man har arbetetat och så
-
 Det första vi gjorde var att skapa en planeringsfil där vi skrev ner vår planering/det som behövde göras, såsom vilka fält i tabellen i databasen som vi skulle behöva eller vilka routes som skulle behövas.
 
 Därefter började vi hålla på med testerna. För att klara testerna behövde vi skapa router.get och router.post metoder för att skicka och hämta data från databasen. Ifall testerna misslyckades blev de röda och gav ett felmeddelande, medan om de lyckades blev de gröna. När vi blev klara med alla tester av en grupp olika tester fortsatte vi till nästa grupp tester. Tillslut hade vi ett helt fungerande inloggningssystem.
